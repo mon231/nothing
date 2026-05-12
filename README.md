@@ -24,7 +24,7 @@ nothing/
 │   ├── build.gradle
 │   └── src/main/
 │       ├── AndroidManifest.xml
-│       ├── java/com/nothing/app/MainActivity.java
+│       ├── java/rel/nothing/MainActivity.java
 │       └── res/
 │           ├── drawable/                     (logo, launcher icon)
 │           ├── layout/activity_main.xml      (splash screen)

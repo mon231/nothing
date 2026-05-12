@@ -1,4 +1,4 @@
-package com.nothing.app;
+package rel.nothing;
 
 import android.app.Activity;
 import android.os.Bundle;
