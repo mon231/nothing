@@ -39,7 +39,7 @@ nothing/
 
 ## Building locally
 
-You need JDK 17 and the Android SDK (with platform `android-34` installed).
+You need JDK 17 and the Android SDK (with platform `android-35` installed).
 
 This repo doesn't ship the Gradle wrapper jar — generate it once, then build:
 
