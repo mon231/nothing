@@ -14,10 +14,25 @@ android {
         versionName "1.0"
     }
 
+    signingConfigs {
+        release {
+            // Populated only when CI / a local build provides the env vars below.
+            // When unset, the release buildType falls back to debug signing so
+            // the project still builds locally without a keystore.
+            def keystorePath = System.getenv("RELEASE_KEYSTORE_PATH")
+            if (keystorePath) {
+                storeFile file(keystorePath)
+                storePassword System.getenv("RELEASE_KEYSTORE_PASSWORD")
+                keyAlias System.getenv("RELEASE_KEY_ALIAS")
+                keyPassword System.getenv("RELEASE_KEY_PASSWORD")
+            }
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
-            signingConfig signingConfigs.debug
+            signingConfig System.getenv("RELEASE_KEYSTORE_PATH") ? signingConfigs.release : signingConfigs.debug
         }
     }
 
