@@ -2,6 +2,21 @@ plugins {
     id 'com.android.application'
 }
 
+def appVersion = {
+    def ref = System.getenv("GITHUB_REF_NAME") ?: ""
+    def m = ref =~ /^v(\d+)\.(\d+)\.(\d+)$/
+    if (m.matches()) {
+        def major = m.group(1).toInteger()
+        def minor = m.group(2).toInteger()
+        def patch = m.group(3).toInteger()
+        return [
+            code: major * 10000 + minor * 100 + patch,
+            name: "${major}.${minor}.${patch}".toString()
+        ]
+    }
+    return [code: 1, name: "0.0.1"]
+}()
+
 android {
     namespace 'rel.nothing'
     compileSdk 35
@@ -10,8 +25,8 @@ android {
         applicationId "rel.nothing"
         minSdk 21
         targetSdk 35
-        versionCode 3
-        versionName "0.3"
+        versionCode appVersion.code
+        versionName appVersion.name
     }
 
     signingConfigs {
